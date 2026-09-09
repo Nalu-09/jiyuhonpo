@@ -135,17 +135,21 @@
     </small>
   </main>
 
-  <script>
-    const manualUrl =
-      'https://script.google.com/macros/s/AKfycbw-YxeYvfg8QDnn7jLMwMVuFPwHdj9hLXS6wF1FrOM230fKFkR6yOZgmlAraGGy2e_7/exec';
+ <script>
+  const manualUrl =
+    'https://script.google.com/macros/s/AKfycbw-YxeYvfg8QDnn7jLMwMVuFPwHdj9hLXS6wF1FrOM230fKFkR6yOZgmlAraGGy2e_7/exec';
 
-    const standalone =
-      window.matchMedia('(display-mode: standalone)').matches ||
-      window.navigator.standalone === true;
+  const standalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
 
-    if (standalone) {
-      window.location.replace(manualUrl);
-    }
-  </script>
+  const installMode =
+    new URLSearchParams(window.location.search)
+      .has('install');
+
+  if (standalone || !installMode) {
+    window.location.replace(manualUrl);
+  }
+</script>
 </body>
 </html>
